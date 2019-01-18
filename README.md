@@ -119,8 +119,8 @@ Afortunatelly, google had created [Clasp »](https://developers.google.com/apps-
 
 # Get Google Sheet data and push it to Firebase Database
 
-- go to `clasp/` folder and rename our new `<script>.ts` file to `index.ts`
-- edit this and paste the following code
+- Go to `clasp/` folder and rename our new `<script>.ts` file to `index.ts`
+- Edit this and paste the following code
 
 ```typescript
 function writeDataToFirebase() {
@@ -129,7 +129,7 @@ function writeDataToFirebase() {
   const base = FirebaseApp.getDatabaseByUrl(firebaseUrl, secret);
 
   const spreadsheetId = "<google_sheet_id>";
-  const rangeName = "<sheet_tab_name>";
+  const rangeName = "<tab_name>";
   const data = Sheets.Spreadsheets.Values.get(spreadsheetId, rangeName).values;
 
   if (!data) {
@@ -153,3 +153,36 @@ Array.prototype.parseData = function() {
     });
 };
 ```
+
+- Replace `<firebase_url>`, `<firebase_secret_id>`, `<google_sheet_id>`, `<tab_name>` with the corrects.
+- Now we need to push our Typescript Clasp script to Apps Script platform (browser) then type `clasp push` (you can use `clasp push --watch` to push each time you save the file)
+- Be careful, don't commit/push the `<firebase_secret_id>`
+- Go to our Apps Script project in the browser and see the pre-compiled code from Typescript to JavaScript
+- Run the script. It will fail, because we don't import FirebaseApp and Sheets API libraries.
+
+## Add Sheets API
+
+[More info: Google Sheets API v4 »](https://developers.google.com/sheets/api/quickstart/apps-script)
+
+- In the Apps Script editor, click `Resources > Advanced Google Services`.
+- Locate Google Sheets API in the dialog and click the corresponding toggle, setting it to on.
+- Click the `Google API` Console link.
+- Enter `"Google Sheets API"` into the search box and click on the corresponding entry in the results.
+- Click the `Enable API` button.
+- Return to the Apps Script editor and click the OK button on the Advanced Google Services dialog.
+
+## Add FirebaseApp API
+
+[More info: Connect Firebase to Google services »](https://sites.google.com/site/scriptsexamples/new-connectors-to-google-services/firebase)
+
+- In the script editor, click on `Resources > Libraries`
+- A popup box opens. Insert the following project key `MYeP8ZEEt1ylVDxS7uyg9plDOcoke7-2l` y the texbox and add the library ([more info »](https://sites.google.com/site/scriptsexamples/new-connectors-to-google-services/firebase))
+- Click on the box listing the different versions of the library. Select the latest public release
+- Click save. You can now use FirebaseApp.
+- Run the script again
+
+> Google needs permissions. It is OK.
+
+At this point, you should have been able to push the Google Sheet data to Firebase Realtime Database.
+
+# Observe the database from Angular
