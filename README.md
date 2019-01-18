@@ -39,7 +39,7 @@ We need to do the following actions:
 - make a deploy to firebase hosting with `firebase deploy`
 - open your app browser and go to https://your-project-id.firebaseapp.com/ then you can see the static frontend
 
-> It is a good time for commit your changes. Ignore the `.firebaserc` file before your commit for avoid to expose your firebase project id
+> 💾 It is a good time for commit your changes.
 
 # Firebase Database Realtime
 
@@ -81,6 +81,8 @@ Afortunatelly, google had created [Clasp »](https://developers.google.com/apps-
 - For ES6 features, we need to write our scripts with Typescript. Then change the extension of your scripts files from `*.js` to `*.ts`
 
 > We will deploy our scripts with Clasp CLI later.
+
+> 💾 It is a good time for commit your changes.
 
 # Get Google Sheet data and push it to Firebase Database
 
@@ -149,6 +151,8 @@ Array.prototype.parseData = function() {
 > Google needs permissions. It is OK.
 
 At this point, you should have been able to push the Google Sheet data to Firebase Realtime Database.
+
+> 💾 It is a good time for commit your changes.
 
 # "Observe" the database from Angular
 
@@ -236,6 +240,8 @@ export const environment = {
 - Build the frontend with `npm run build`
 - Deploy with `firebase deploy`
 
+> 💾 It is a good time for commit your changes.
+
 ## Update database when edit the Google Sheet file
 
 If we have to add new consoles to the app then go to the Google Sheet file and add a new console to the list. But we need to run the script again. Fortunately we have Project Activators in Google Apps Script editor that automates the process. Let's go there. Open the Apps Script editor of your Google Sheet
@@ -253,3 +259,9 @@ If we have to add new consoles to the app then go to the Google Sheet file and a
 - Save and complete the auth.
 
 Now, when you edit the Google Sheet file, the Apps Script runs and update the Firebase Realtime Database, then thanks to the RXJS Observables, we can "observe" the database changes and fetch those values whose will show in the front in real time, without reload the page.
+
+---
+
+💖 Thank you for reaching the end. I wish it had been helpful. Give the repository a star if you liked it. Keep learning!
+
+Lucas Romero Di Benedetto

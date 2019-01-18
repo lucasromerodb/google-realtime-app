@@ -44,5 +44,4 @@ testem.log
 Thumbs.db
 
 # Credentials
-.firebaserc
 credentials.js
