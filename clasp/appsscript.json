@@ -1,6 +1,11 @@
 {
   "timeZone": "America/Argentina/Buenos_Aires",
   "dependencies": {
+    "libraries": [{
+      "userSymbol": "FirebaseApp",
+      "libraryId": "1hguuh4Zx72XVC1Zldm_vTtcUUKUA6iBUOoGnJUWLfqDWx5WlOJHqYkrt",
+      "version": "30"
+    }]
   },
   "exceptionLogging": "STACKDRIVER"
 }

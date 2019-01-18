@@ -1,10 +1,10 @@
 function writeDataToFirebase() {
-  const firebaseUrl = "<firebase_url>";
-  const secret = "<firebase_secret_id>";
+  const firebaseUrl = "https://stack-app-f2415.firebaseio.com";
+  const secret = firebase.secret;
   const base = FirebaseApp.getDatabaseByUrl(firebaseUrl, secret);
 
-  const spreadsheetId = "<google_sheet_id>";
-  const rangeName = "<sheet_tab_name>";
+  const spreadsheetId = "1oK46iECNR0ROkeaCIk30gESE2CoZ3KCtMUI-yJbuLuc";
+  const rangeName = "consoles";
   const data = Sheets.Spreadsheets.Values.get(spreadsheetId, rangeName).values;
 
   if (!data) {
