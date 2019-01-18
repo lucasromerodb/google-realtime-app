@@ -264,4 +264,4 @@ Now, when you edit the Google Sheet file, the Apps Script runs and update the Fi
 
 💖 Thank you for reaching the end. I wish it had been helpful. Give the repository a star if you liked it. Keep learning!
 
-Lucas Romero Di Benedetto
+[Lucas Romero Di Benedetto](https://lucasromerodb.github.io/)
