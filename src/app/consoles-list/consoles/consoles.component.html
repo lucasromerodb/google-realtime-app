@@ -1,8 +1,5 @@
-<h1>Consoles:</h1>
-<input type="text" [(ngModel)]="filterText" placeholder="Search any item..." />
-
 <ol>
-  <li *ngFor="let console of (consoles | async | filter: filterText)">
+  <li *ngFor="let console of (consoles | async | filter: filterBy)">
     <ul>
       <li>Console: {{ console.console }}</li>
       <li>Price: {{ console.price }}</li>

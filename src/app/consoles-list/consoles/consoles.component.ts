@@ -1,6 +1,4 @@
-import { Component } from "@angular/core";
-import { AngularFireDatabase } from "@angular/fire/database";
-import { Observable } from "rxjs";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-consoles",
@@ -8,9 +6,6 @@ import { Observable } from "rxjs";
   styleUrls: ["./consoles.component.css"]
 })
 export class ConsolesComponent {
-  consoles: Observable<any[]>;
-  filterText: any;
-  constructor(db: AngularFireDatabase) {
-    this.consoles = db.list("consoles").valueChanges();
-  }
+  @Input() consoles: any[];
+  @Input() filterBy: string;
 }

@@ -1,1 +1,6 @@
-<input type="text" [(ngModel)]="filterText" placeholder="Search any item..." />
+<input
+  type="text"
+  [(ngModel)]="inputText"
+  (keyup)="onChange()"
+  placeholder="Search any console..."
+/>

@@ -1,1 +1,3 @@
-<app-consoles></app-consoles>
+<h1>Consoles list</h1>
+<app-filter (outputText)="onFilter($event)"></app-filter>
+<app-consoles [filterBy]="filterBy" [consoles]="consoles"></app-consoles>

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-filter",
@@ -6,6 +6,10 @@ import { Component } from "@angular/core";
   styleUrls: ["./filter.component.css"]
 })
 export class FilterComponent {
-  filterText: any;
-  constructor() {}
+  inputText: string;
+  @Output() outputText: EventEmitter<string> = new EventEmitter();
+
+  onChange(): void {
+    this.outputText.emit(this.inputText);
+  }
 }
