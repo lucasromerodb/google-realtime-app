@@ -1,16 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireDatabase } from "@angular/fire/database";
 
-import { AppComponent } from './app.component';
+import { environment } from "../environments/environment";
+import { AppComponent } from "./app.component";
+import { ConsolesComponent } from "./consoles/consoles.component";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, ConsolesComponent],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [],
+  providers: [AngularFireDatabase],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

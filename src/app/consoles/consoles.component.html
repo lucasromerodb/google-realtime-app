@@ -1,0 +1,10 @@
+<h1>Consoles:</h1>
+<ol>
+  <li *ngFor="let console of (consoles | async)">
+    <ul>
+      <li>Console: {{ console.console }}</li>
+      <li>Price: {{ console.price }}</li>
+    </ul>
+    <br />
+  </li>
+</ol>
