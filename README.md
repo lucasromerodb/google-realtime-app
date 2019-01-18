@@ -185,4 +185,80 @@ Array.prototype.parseData = function() {
 
 At this point, you should have been able to push the Google Sheet data to Firebase Realtime Database.
 
-# Observe the database from Angular
+# "Observe" the database from Angular
+
+- Create a new component `ng g c consoles`
+- Display `<app-consoles>` on `app.component.html`
+- Serve the app with `npm start` of `ng s`
+- Install [angularfire2 »](https://github.com/angular/angularfire2) with `npm install firebase @angular/fire --save`
+- Implement the following code
+
+## consoles.component.ts
+
+> Import `angularfire2` and `rxjs` into consoles.component.ts
+
+```typescript
+import { AngularFireDatabase } from "@angular/fire/database";
+import { Observable } from "rxjs";
+```
+
+> Inject `AngularFireDatabase` service into constructor component and implement it
+
+```typescript
+export class ConsolesComponent {
+  consoles: Observable<any[]>;
+  constructor(db: AngularFireDatabase) {
+    this.consoles = db.list("consoles").valueChanges();
+  }
+}
+```
+
+## consoles.component.html
+
+> Implement the template with the async pipe
+
+```html
+<h1>Consoles:</h1>
+<ol>
+  <li *ngFor="let console of (consoles | async)">
+    <ul>
+      <li>Console: {{ console.console }}</li>
+      <li>Price: {{ console.price }}</li>
+    </ul>
+    <br />
+  </li>
+</ol>
+```
+
+## app.module.ts
+
+> Import Firebase module and service. Import environment variables too
+
+```typescript
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireDatabase } from "@angular/fire/database";
+import { environment } from "../environments/environment"; // environment variables
+```
+
+> Set AngularFireDatabase as a provider
+
+```typescript
+providers: [AngularFireDatabase],
+```
+
+> Set AngularFireDatabase as a provider
+
+```typescript
+imports: [..., AngularFireModule.initializeApp(environment.firebase)],
+```
+
+- As you can see `environment.firebase` is not defined, you need to edit the file `environment.ts` and `environment.prod.ts` in `./src/environments`
+- Go to [Firebase Console](https://console.firebase.google.com) > Settings > Project Config. and in the `Your apps` section click on the `</>` icon, then copy the config object `{...}`
+- Paste it as a second property of `environment` object in both files
+
+```typescript
+export const environment = {
+  production: false,
+  firebase: {...} // your content here
+};
+```
