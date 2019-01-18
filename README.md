@@ -1,49 +1,12 @@
-# google-front
+# Google Stack App
 
-Google Sheets (CMS) > Google Apps Script (Service) > G Suite Hub (Autom.) >Firebase Database (DB) > Angular (Front)
+We need to do the following actions:
 
-# Firebase project
+- Add values to a Google Sheet
+- Push these values automaticaly to a Firebase Realtime Database
+- Observe the database and show the data in the frontend every time the Google Sheet data changes.
 
-https://firebase.google.com/docs/hosting/quickstart?authuser=0
-
-- create a firebase project
-- firebase login
-- firebase list
-- firebase init
-- select hosting (\*)
-- select project
-- default, not spa
-- firebase serve
-- firebase deploy
-
-# Google Sheet
-
-- create google sheet file
-- fill the sheet with data
-- create apps script
-
-# Firebase Database
-
-- create firebase realtime database
-- select blocked mode
-- set rules on false to write data
-
-# Google Apps Script
-
-- clasp
-- clone apps script
-- rename to .ts for ES6 features
-- import FirebaseApp library
-- implement your function
-- run first time for checking and push to firebase
-- click on activators
-- set a new activator for each time the file has edited
--
-
-# Angular
-
-- set output dir in angular.json file to public folder ../public
--
+> Google Sheets (CMS) > Google Apps Script (Service) > G Suite Hub (Autom.) >Firebase Database (DB) > Angular (Front)
 
 # Setup front and firebase hosting project
 
@@ -208,10 +171,12 @@ import { Observable } from "rxjs";
 export class ConsolesComponent {
   consoles: Observable<any[]>;
   constructor(db: AngularFireDatabase) {
-    this.consoles = db.list("consoles").valueChanges();
+    this.consoles = db.list("consoles").valueChanges(); // list("consoles") is the json property name in our database, same name as the column head of consoles in our Google Sheets
   }
 }
 ```
+
+[More info: angularfire2 > lists](https://github.com/angular/angularfire2/blob/master/docs/rtdb/lists.md)
 
 ## consoles.component.html
 
@@ -252,6 +217,8 @@ providers: [AngularFireDatabase],
 imports: [..., AngularFireModule.initializeApp(environment.firebase)],
 ```
 
+[More info: Remember to set your Firebase configuration in app/app.module.ts](https://github.com/angular/angularfire2#quick-links)
+
 - As you can see `environment.firebase` is not defined, you need to edit the file `environment.ts` and `environment.prod.ts` in `./src/environments`
 - Go to [Firebase Console](https://console.firebase.google.com) > Settings > Project Config. and in the `Your apps` section click on the `</>` icon, then copy the config object `{...}`
 - Paste it as a second property of `environment` object in both files
@@ -262,3 +229,25 @@ export const environment = {
   firebase: {...} // your content here
 };
 ```
+
+- Ok we have to make a new build and push it to Firebase Hosting
+- Build the frontend with `npm run build`
+- Deploy with `firebase deploy`
+
+## Update database when edit the Google Sheet file
+
+If we have to add new consoles to the app then go to the Google Sheet file and add a new console to the list. But we need to run the script again. Fortunately we have Project Activators in Google Apps Script editor that automates the process. Let's go there. Open the Apps Script editor of your Google Sheet
+
+> Alternativley you can go to [G Suite Developer Hub »](https://script.google.com) and you can see the list of all your script projects
+
+- Open the editor and click on the `Project Activators` button to the left of "Run" scritp
+
+> Activate the Project Activator if it wasn't activated yet
+
+- Add `New Activator` (bottom right button)
+- Select `writeDataToFirebase` as the function to execute
+- On "Event source" select `Google Sheet`
+- On "Event type" select `Edit`
+- Save and complete the auth.
+
+Now, when you edit the Google Sheet file, the Apps Script runs and update the Firebase Realtime Database, then thanks to the RXJS Observables, we can "observe" the database changes and fetch those values whose will show in the front in real time, without reload the page.
