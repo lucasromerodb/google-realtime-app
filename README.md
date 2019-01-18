@@ -12,17 +12,17 @@ We need to do the following actions:
 
 # Setup front and firebase hosting project
 
-- open terminal and create a new Angular project `ng new <project>`
-- go to your project folder `cd <project>`
-- create a new project in [Firebase Console »](https://console.firebase.google.com/)
-- install [Firebase CLI »](https://firebase.google.com/docs/cli) with `npm install -g firebase-tools`
-- in your terminal, login into firebase `firebase login` (complete the auth process)
-- init firebase project `firebase init`
-- select `(*) Hosting` (select with space then press enter)
-- select `[don't setup a default project]` (selected by default)
-- select `public` folder (selected by default)
+- Open terminal and create a new Angular project `ng new <project>`
+- Go to your project folder `cd <project>`
+- Create a new project in [Firebase Console »](https://console.firebase.google.com/)
+- Install [Firebase CLI »](https://firebase.google.com/docs/cli) with `npm install -g firebase-tools`
+- In your terminal, login into firebase `firebase login` (complete the auth process)
+- Init firebase project `firebase init`
+- Select `(*) Hosting` (select with space then press enter)
+- Select `[don't setup a default project]` (selected by default)
+- Select `public` folder (selected by default)
 - DON'T `configure as a single-page app` (selected by default)
-- edit `.firebaserc` and paste the following code
+- Edit `.firebaserc` and paste the following code
 
 ```
 {
@@ -32,25 +32,25 @@ We need to do the following actions:
 }
 ```
 
-- type `firebase list` and copy the project id of your project recently created then replace it in `.firebaserc`
-- edit `angular.json` file and replace `outputPath: dist/<project>` with `"outputPath": "public"`
-- edit `.gitignore` file and ignore the `/public` folder
-- we need to build the frontend then type `npm run build`
-- make a deploy to firebase hosting with `firebase deploy`
-- open your app browser and go to https://your-project-id.firebaseapp.com/ then you can see the static frontend
+- Type `firebase list` and copy the project id of your project recently created then replace it in `.firebaserc`
+- Edit `angular.json` file and replace `outputPath: dist/<project>` with `"outputPath": "public"`
+- Edit `.gitignore` file and ignore the `/public` folder
+- We need to build the frontend then type `npm run build`
+- Make a deploy to firebase hosting with `firebase deploy`
+- Open your app browser and go to https://your-project-id.firebaseapp.com/ then you can see the static frontend
 
 > 💾 It is a good time for commit your changes.
 
 # Firebase Database Realtime
 
-- go to [Firebase Console »](https://console.firebase.google.com/) > Database and create a new `Realtime Database` (press next on the pop up)
-- in Database go to `Rules` tab and set read value to `true` then Publish the rules on the blue message
+- Go to [Firebase Console »](https://console.firebase.google.com/) > Database and create a new `Realtime Database` (press next on the pop up)
+- In Database go to `Rules` tab and set read value to `true` then Publish the rules on the blue message
 
 # Google Sheet
 
-- create a Google Sheet file in your Google Drive account
-- open it and add some title and save (maybe `<your-project>`)
-- then fill it with some data like this:
+- Create a Google Sheet file in your Google Drive account
+- Open it and add some title and save (maybe `<your-project>`)
+- Then fill it with some data like this:
 
 | **console**       | **price** |
 | ----------------- | --------- |
@@ -61,8 +61,8 @@ We need to do the following actions:
 | Nintendo Switch   | 299       |
 | Nintendo 2DS      | 140       |
 
-- then in the toolbar click on `Tools > Apps Script Editor` (it will open a new tab)
-- add some title and save, i recomend the same as google sheet title (maybe `<your-project>`)
+- Then in the toolbar click on `Tools > Apps Script Editor` (it will open a new tab)
+- Add some title and save, i recomend the same as google sheet title (maybe `<your-project>`)
 
 > We need the Apps Script ID later to clone this project with [Clasp »](https://developers.google.com/apps-script/guides/clasp) and use ES6 features
 
@@ -72,12 +72,12 @@ The Apps Scripts must be writed in JavaScript. Of course we can write our script
 
 Afortunatelly, google had created [Clasp »](https://developers.google.com/apps-script/guides/clasp). It is an open-source tool, separate from the Apps Script platform, that lets you develop and manage Apps Script projects from your terminal rather than the Apps Script editor.
 
-- in the root folder create a new folder `mkdir clasp`
-- then go to this folder `cd clasp`
-- ok, open your terminal and install Clasp with `npm install @google/clasp -g`
-- login to the Clasp CLI `clasp login`
-- don't create a new script, we need to clone an existing project script. Open the Apps Script project (browser) created in the previous section and go to `File > Project properties` then copy the `Apps Script ID`
-- back to the terminal we need to clone the project `clasp clone <scriptId>`
+- In the root folder create a new folder `mkdir clasp`
+- Then go to this folder `cd clasp`
+- Ok, open your terminal and install Clasp with `npm install @google/clasp -g`
+- Login to the Clasp CLI `clasp login`
+- Don't create a new script, we need to clone an existing project script. Open the Apps Script project (browser) created in the previous section and go to `File > Project properties` then copy the `Apps Script ID`
+- Back to the terminal we need to clone the project `clasp clone <scriptId>`
 - For ES6 features, we need to write our scripts with Typescript. Then change the extension of your scripts files from `*.js` to `*.ts`
 
 > We will deploy our scripts with Clasp CLI later.
