@@ -239,6 +239,7 @@ export const environment = {
 - Ok we have to make a new build and push it to Firebase Hosting
 - Build the frontend with `npm run build`
 - Deploy with `firebase deploy`
+- See the result in https://your-project-id.firebaseapp.com/
 
 > 💾 It is a good time for commit your changes.
 
