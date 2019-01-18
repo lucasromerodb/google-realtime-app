@@ -1,5 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { FilterPipe } from "../filter.pipe";
+import { Component } from "@angular/core";
 
 @Component({
   selector: "app-filter",
