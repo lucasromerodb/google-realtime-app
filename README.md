@@ -1,3 +1,5 @@
+> 😅 NOTE: I'm Spanish speaking and my English is pretty bad, I promise to correctly rewrite the documentation so everyone can understand it. I'm sorry.
+
 # Google Stack App
 
 We need to do the following actions:
