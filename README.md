@@ -1,27 +1,77 @@
-# GoogleStackApp
+# google-front
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+Google Sheets (CMS) > Google Apps Script (Service) > G Suite Hub (Autom.) >Firebase Database (DB) > Angular (Front)
 
-## Development server
+# Firebase project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+https://firebase.google.com/docs/hosting/quickstart?authuser=0
 
-## Code scaffolding
+- create a firebase project
+- firebase login
+- firebase list
+- firebase init
+- select hosting (\*)
+- select project
+- default, not spa
+- firebase serve
+- firebase deploy
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Google Sheet
 
-## Build
+- create google sheet file
+- fill the sheet with data
+- create apps script
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# Firebase Database
 
-## Running unit tests
+- create firebase realtime database
+- select blocked mode
+- set rules on false to write data
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Google Apps Script
 
-## Running end-to-end tests
+- clasp
+- clone apps script
+- rename to .ts for ES6 features
+- import FirebaseApp library
+- implement your function
+- run first time for checking and push to firebase
+- click on activators
+- set a new activator for each time the file has edited
+-
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+# Angular
 
-## Further help
+- set output dir in angular.json file to public folder ../public
+-
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# PROCESS
+
+- create a new Angular project `ng new <project>`
+- go to your project folder `cd <project>`
+- create a new project in [Firebase Console »](https://console.firebase.google.com/)
+- install [Firebase CLI »](https://firebase.google.com/docs/cli)
+- login into firebase `firebase login` (complete the auth process)
+- init firebase project `firebase init`
+- select `(*) Hosting` (select with space then press enter)
+- select `[don't setup a default project]` (selected by default)
+- select `public` folder (selected by default)
+- DON'T `configure as a single-page app` (selected by default)
+- edit `.firebaserc` and paste the following code
+
+```
+{
+  "projects": {
+    "default": "<your-project-id>"
+  }
+}
+```
+
+- type `firebase list` and copy the project id of your project recently created then replace it in `.firebaserc`
+- edit `angular.json` file and replace `outputPath: dist/<project>` with `"outputPath": "public"`
+- edit `.gitignore` file and ignore the `/public` folder
+- we need to build the frontend then type `npm run build`
+- make a deploy to firebase hosting with `firebase deploy`
+- open your app browser and go to https://your-project-id.firebaseapp.com/ then you can see the static frontend
+
+> It is a good time for commit your changes. Ignore the `.firebaserc` file before your commit for avoid to expose your firebase project id
